@@ -1,23 +1,38 @@
 import time
 
-def calculeaza_si_afiseaza_mesaj():
+def genereaza_sir_fibonacci(numar_termeni):
     """
-    Functie care afiseaza un mesaj sugestiv.
+    Calculeaza si returneaza o lista cu primele n numere din sirul Fibonacci.
     """
-    mesaj_de_afisat = "Rezultatul a fost generat cu succes."
-    print(mesaj_de_afisat)
+    termen_anterior = 0
+    termen_curent = 1
+    sir_rezultat = []
 
-def porneste_bucla_principala():
+    for _ in range(numar_termeni):
+        sir_rezultat.append(termen_anterior)
+        # Calculam urmatorul termen prin suma ultimelor doua
+        urmatorul_termen = termen_anterior + termen_curent
+        termen_anterior = termen_curent
+        termen_curent = urmatorul_termen
+        
+    return sir_rezultat
+
+def ruleaza_programul():
     """
-    Ruleaza functia de afisare intr-o bucla infinita la un interval de 5 secunde.
+    Executa generarea sirului la fiecare 5 secunde.
     """
+    numar_elemente = 10
+    
     try:
         while True:
-            calculeaza_si_afiseaza_mesaj()
-            # Asteapta 5 secunde inainte de urmatoarea executie
+            rezultat = genereaza_sir_fibonacci(numar_elemente)
+            print(f"Sirul Fibonacci ({numar_elemente} termeni): {rezultat}")
+            
+            # Asteptam 5 secunde inainte de regenerare
+            print("Se asteapta 5 secunde pentru regenerare...\n")
             time.sleep(5)
     except KeyboardInterrupt:
         print("\nProgram oprit de utilizator.")
 
 if __name__ == "__main__":
-    porneste_bucla_principala()
+    ruleaza_programul()
